@@ -18,7 +18,7 @@ interface UseProgressiveLoadOptions {
  */
 export const useProgressiveLoad = <T = any>({
   tableName,
-  initialBatchSize = 50,
+  initialBatchSize = 100,
   orderBy = 'id',
   enabled = true
 }: UseProgressiveLoadOptions) => {

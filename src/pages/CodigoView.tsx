@@ -54,7 +54,7 @@ const CodigoView = () => {
       setSearchQuery(artigoParam);
     }
   }, [searchParams]);
-  const [displayLimit, setDisplayLimit] = useState(50);
+  const [displayLimit, setDisplayLimit] = useState(100);
   const [stickyPlayerOpen, setStickyPlayerOpen] = useState(false);
   const [currentAudio, setCurrentAudio] = useState({
     url: "",
@@ -181,7 +181,7 @@ const CodigoView = () => {
   // Use progressive loading for optimal performance
   const { articles, isLoading, isLoadingFull } = useProgressiveLoad<Article>({
     tableName,
-    initialBatchSize: 50,
+    initialBatchSize: 150,
     orderBy: "id"
   });
   // Filter and limit articles with useMemo
@@ -276,8 +276,8 @@ const CodigoView = () => {
         const scrollTop = element.scrollTop;
         const scrollHeight = element.scrollHeight;
         const clientHeight = element.clientHeight;
-        if (scrollTop + clientHeight >= scrollHeight - 400 && displayLimit < filteredArticles.length) {
-          setDisplayLimit(prev => Math.min(prev + 50, filteredArticles.length));
+        if (scrollTop + clientHeight >= scrollHeight - 500 && displayLimit < filteredArticles.length) {
+          setDisplayLimit(prev => Math.min(prev + 100, filteredArticles.length));
         }
       };
       element.addEventListener('scroll', handleScroll);

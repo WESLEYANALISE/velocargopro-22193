@@ -50,7 +50,7 @@ export const ArtigoListaCompacta = ({
   codeName
 }: ArtigoListaCompactaProps) => {
   const [expandedId, setExpandedId] = useState<number | null>(null);
-  const [displayedCount, setDisplayedCount] = useState(50);
+  const [displayedCount, setDisplayedCount] = useState(100);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const loaderRef = useRef<HTMLDivElement>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
@@ -98,14 +98,14 @@ export const ArtigoListaCompacta = ({
       (entries) => {
         if (entries[0].isIntersecting && !isLoadingMore && hasMore) {
           setIsLoadingMore(true);
-          // Simular delay de carregamento
+          // Carrega mais artigos sem delay para melhor UX
           setTimeout(() => {
-            setDisplayedCount(prev => Math.min(prev + 50, articlesWithNumber.length));
+            setDisplayedCount(prev => Math.min(prev + 100, articlesWithNumber.length));
             setIsLoadingMore(false);
-          }, 300);
+          }, 100);
         }
       },
-      { threshold: 0.1, rootMargin: "100px" }
+      { threshold: 0.1, rootMargin: "200px" }
     );
 
     observer.observe(loaderRef.current);
@@ -115,7 +115,7 @@ export const ArtigoListaCompacta = ({
 
   // Reset displayed count when articles change
   useEffect(() => {
-    setDisplayedCount(50);
+    setDisplayedCount(100);
   }, [articles.length, searchQuery]);
 
   return (
