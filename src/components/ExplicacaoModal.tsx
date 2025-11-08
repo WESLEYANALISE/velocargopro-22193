@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowLeft, Download, Share2, BookOpen, Loader2, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -253,6 +253,16 @@ const ExplicacaoModal = ({
     setRetryCount(0);
     onClose();
   };
+
+  // Reset quando artigo mudar
+  useEffect(() => {
+    setConteudo("");
+    setProgress(0);
+    setShowLevelSelection(true);
+    setShowAgeSelection(false);
+    setHasValidContent(false);
+    setRetryCount(0);
+  }, [numeroArtigo, tipo]);
 
   const handleSuperFacilClick = () => {
     setShowLevelSelection(false);

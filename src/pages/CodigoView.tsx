@@ -326,8 +326,27 @@ const CodigoView = () => {
   const handleGenerateFlashcards = async (artigo: string, numeroArtigo: string) => {
     setLoadingFlashcards(true);
     try {
+      // Mapear código da tabela para código curto
+      const codigoMap: { [key: string]: string } = {
+        'CP - Código Penal': 'cpp',
+        'CC - Código Civil': 'cc',
+        'CF - Constituição Federal': 'cf',
+        'CPC – Código de Processo Civil': 'cpc',
+        'CPP – Código de Processo Penal': 'cppenal',
+        'CDC – Código de Defesa do Consumidor': 'cdc',
+        'CLT – Consolidação das Leis do Trabalho': 'clt',
+        'CTN – Código Tributário Nacional': 'ctn',
+        'CTB Código de Trânsito Brasileiro': 'ctb',
+        'CE – Código Eleitoral': 'ce',
+      };
+
       const response = await supabase.functions.invoke('gerar-flashcards', {
-        body: { content: `Art. ${numeroArtigo}\n${artigo}` }
+        body: { 
+          content: `Art. ${numeroArtigo}\n${artigo}`,
+          codigo: codigoMap[tableName] || id,
+          numeroArtigo: numeroArtigo,
+          tipo: 'artigo'
+        }
       });
       
       if (response.error) throw response.error;
@@ -335,8 +354,8 @@ const CodigoView = () => {
       setFlashcardsData(response.data.flashcards || []);
       setFlashcardsModalOpen(true);
       
-      // Salvar flashcards na tabela
-      if (response.data.flashcards && Array.isArray(response.data.flashcards)) {
+      // Edge function já salva no cache, mas mantemos backup local
+      if (response.data.flashcards && Array.isArray(response.data.flashcards) && !response.data.cached) {
         try {
           const { error: updateError } = await supabase
             .from(tableName as any)
