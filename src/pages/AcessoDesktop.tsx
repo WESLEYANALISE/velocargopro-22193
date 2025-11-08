@@ -128,7 +128,7 @@ const AcessoDesktop = () => {
                           alt={`Plataforma Desktop ${index + 1}`} 
                           className="w-full h-full object-contain bg-secondary/20"
                           loading="eager"
-                          fetchPriority="high"
+                          fetchpriority="high"
                           decoding="async"
                         />
                       </div>

@@ -49,8 +49,12 @@ serve(async (req) => {
     // IMPORTANTE: Você precisa criar um Web App no Google Apps Script da sua planilha
     // Veja as instruções no console quando esta função for executada
     const RAW_GOOGLE_SCRIPT = (Deno.env.get('GOOGLE_SCRIPT_URL') || '').trim();
+    // Aceita URL completa do Web App (terminando com /exec) ou apenas o ID (começando com AKfycb...)
+    const isFullUrl = RAW_GOOGLE_SCRIPT.startsWith('http');
+    const isLikelyApiKey = RAW_GOOGLE_SCRIPT.startsWith('AIza');
+
     const GOOGLE_SCRIPT_URL = RAW_GOOGLE_SCRIPT
-      ? (RAW_GOOGLE_SCRIPT.startsWith('http')
+      ? (isFullUrl
           ? RAW_GOOGLE_SCRIPT
           : `https://script.google.com/macros/s/${RAW_GOOGLE_SCRIPT}/exec`)
       : '';
@@ -58,6 +62,12 @@ serve(async (req) => {
     if (!GOOGLE_SCRIPT_URL) {
       console.error(`\nCONFIGURAÇÃO NECESSÁRIA - Google Sheets\nCrie um Web App no Apps Script da planilha e use a URL completa (termina com /exec) ou apenas o ID (AKfycb...).`);
       throw new Error("Configure GOOGLE_SCRIPT_URL primeiro. Veja as instruções no log.");
+    }
+
+    // Validação extra para evitar valores incorretos (ex.: chave de API Google 'AIza...')
+    if (isLikelyApiKey || (isFullUrl && !/script\.google\.com\/macros\/s\/.+\/exec/.test(GOOGLE_SCRIPT_URL))) {
+      console.error(`\nGOOGLE_SCRIPT_URL inválida. Informe:\n- a URL do Web App publicada (deve conter 'script.google.com/macros/s/.../exec'), ou\n- APENAS o ID do deployment (ex.: AKfycb...)`);
+      throw new Error("GOOGLE_SCRIPT_URL inválida. Use a URL do Web App (/exec) ou o ID AKfycb...");
     }
 
     console.log('Enviando dados para Google Sheets via:', GOOGLE_SCRIPT_URL);
