@@ -89,6 +89,27 @@ export type Database = {
         }
         Relationships: []
       }
+      AUDIO_FEEDBACK_CACHE: {
+        Row: {
+          created_at: string | null
+          id: number
+          tipo: string
+          url_audio: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: number
+          tipo: string
+          url_audio: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: number
+          tipo?: string
+          url_audio?: string
+        }
+        Relationships: []
+      }
       "AUDIO-AULA": {
         Row: {
           area: string | null
@@ -122,6 +143,48 @@ export type Database = {
           tema?: string | null
           titulo?: string | null
           url_audio?: string | null
+        }
+        Relationships: []
+      }
+      aulas_artigos: {
+        Row: {
+          aproveitamento_medio: number | null
+          audios: Json | null
+          codigo_tabela: string
+          conteudo_artigo: string
+          created_at: string
+          created_by: string | null
+          estrutura_completa: Json
+          id: string
+          numero_artigo: string
+          updated_at: string
+          visualizacoes: number | null
+        }
+        Insert: {
+          aproveitamento_medio?: number | null
+          audios?: Json | null
+          codigo_tabela: string
+          conteudo_artigo: string
+          created_at?: string
+          created_by?: string | null
+          estrutura_completa: Json
+          id?: string
+          numero_artigo: string
+          updated_at?: string
+          visualizacoes?: number | null
+        }
+        Update: {
+          aproveitamento_medio?: number | null
+          audios?: Json | null
+          codigo_tabela?: string
+          conteudo_artigo?: string
+          created_at?: string
+          created_by?: string | null
+          estrutura_completa?: Json
+          id?: string
+          numero_artigo?: string
+          updated_at?: string
+          visualizacoes?: number | null
         }
         Relationships: []
       }
@@ -160,6 +223,48 @@ export type Database = {
           tema?: string
           titulo?: string
           updated_at?: string | null
+          visualizacoes?: number | null
+        }
+        Relationships: []
+      }
+      aulas_livros: {
+        Row: {
+          aproveitamento_medio: number | null
+          area: string | null
+          created_at: string
+          descricao: string | null
+          estrutura_completa: Json
+          id: string
+          livro_id: number
+          tema: string
+          titulo: string
+          updated_at: string
+          visualizacoes: number | null
+        }
+        Insert: {
+          aproveitamento_medio?: number | null
+          area?: string | null
+          created_at?: string
+          descricao?: string | null
+          estrutura_completa: Json
+          id?: string
+          livro_id: number
+          tema: string
+          titulo: string
+          updated_at?: string
+          visualizacoes?: number | null
+        }
+        Update: {
+          aproveitamento_medio?: number | null
+          area?: string | null
+          created_at?: string
+          descricao?: string | null
+          estrutura_completa?: Json
+          id?: string
+          livro_id?: number
+          tema?: string
+          titulo?: string
+          updated_at?: string
           visualizacoes?: number | null
         }
         Relationships: []
@@ -260,12 +365,17 @@ export type Database = {
           autor: string | null
           beneficios: string | null
           "Capa-area": string | null
+          capitulos_gerados: number | null
           download: string | null
           id: number
           imagem: string | null
           link: string | null
           livro: string | null
+          questoes_resumo: Json | null
+          resumo_capitulos: Json | null
+          resumo_gerado_em: string | null
           sobre: string | null
+          total_capitulos: number | null
         }
         Insert: {
           area?: string | null
@@ -273,12 +383,17 @@ export type Database = {
           autor?: string | null
           beneficios?: string | null
           "Capa-area"?: string | null
+          capitulos_gerados?: number | null
           download?: string | null
           id: number
           imagem?: string | null
           link?: string | null
           livro?: string | null
+          questoes_resumo?: Json | null
+          resumo_capitulos?: Json | null
+          resumo_gerado_em?: string | null
           sobre?: string | null
+          total_capitulos?: number | null
         }
         Update: {
           area?: string | null
@@ -286,12 +401,17 @@ export type Database = {
           autor?: string | null
           beneficios?: string | null
           "Capa-area"?: string | null
+          capitulos_gerados?: number | null
           download?: string | null
           id?: number
           imagem?: string | null
           link?: string | null
           livro?: string | null
+          questoes_resumo?: Json | null
+          resumo_capitulos?: Json | null
+          resumo_gerado_em?: string | null
           sobre?: string | null
+          total_capitulos?: number | null
         }
         Relationships: []
       }
@@ -302,11 +422,12 @@ export type Database = {
           "Capa-area": string | null
           "Capa-livro": string | null
           Download: string | null
-          id: number | null
+          id: number
           Link: string | null
           Ordem: number | null
           Sobre: string | null
           Tema: string | null
+          url_capa_gerada: string | null
         }
         Insert: {
           Área?: string | null
@@ -314,11 +435,12 @@ export type Database = {
           "Capa-area"?: string | null
           "Capa-livro"?: string | null
           Download?: string | null
-          id?: number | null
+          id: number
           Link?: string | null
           Ordem?: number | null
           Sobre?: string | null
           Tema?: string | null
+          url_capa_gerada?: string | null
         }
         Update: {
           Área?: string | null
@@ -326,11 +448,12 @@ export type Database = {
           "Capa-area"?: string | null
           "Capa-livro"?: string | null
           Download?: string | null
-          id?: number | null
+          id?: number
           Link?: string | null
           Ordem?: number | null
           Sobre?: string | null
           Tema?: string | null
+          url_capa_gerada?: string | null
         }
         Relationships: []
       }
@@ -385,6 +508,9 @@ export type Database = {
           imagem: string | null
           link: string | null
           livro: string | null
+          questoes_resumo: Json | null
+          resumo_capitulos: Json | null
+          resumo_gerado_em: string | null
           sobre: string | null
         }
         Insert: {
@@ -398,6 +524,9 @@ export type Database = {
           imagem?: string | null
           link?: string | null
           livro?: string | null
+          questoes_resumo?: Json | null
+          resumo_capitulos?: Json | null
+          resumo_gerado_em?: string | null
           sobre?: string | null
         }
         Update: {
@@ -411,6 +540,9 @@ export type Database = {
           imagem?: string | null
           link?: string | null
           livro?: string | null
+          questoes_resumo?: Json | null
+          resumo_capitulos?: Json | null
+          resumo_gerado_em?: string | null
           sobre?: string | null
         }
         Relationships: []
@@ -427,6 +559,9 @@ export type Database = {
           imagem: string | null
           link: string | null
           livro: string | null
+          questoes_resumo: Json | null
+          resumo_capitulos: Json | null
+          resumo_gerado_em: string | null
           sobre: string | null
         }
         Insert: {
@@ -440,6 +575,9 @@ export type Database = {
           imagem?: string | null
           link?: string | null
           livro?: string | null
+          questoes_resumo?: Json | null
+          resumo_capitulos?: Json | null
+          resumo_gerado_em?: string | null
           sobre?: string | null
         }
         Update: {
@@ -453,7 +591,61 @@ export type Database = {
           imagem?: string | null
           link?: string | null
           livro?: string | null
+          questoes_resumo?: Json | null
+          resumo_capitulos?: Json | null
+          resumo_gerado_em?: string | null
           sobre?: string | null
+        }
+        Relationships: []
+      }
+      BLOGGER_JURIDICO: {
+        Row: {
+          cache_validade: string | null
+          categoria: string
+          conteudo_gerado: string | null
+          created_at: string | null
+          descricao_curta: string | null
+          fontes_referencia: string[] | null
+          gerado_em: string | null
+          id: number
+          ordem: number
+          titulo: string
+          topicos: string[] | null
+          updated_at: string | null
+          url_audio: string | null
+          url_capa: string | null
+        }
+        Insert: {
+          cache_validade?: string | null
+          categoria: string
+          conteudo_gerado?: string | null
+          created_at?: string | null
+          descricao_curta?: string | null
+          fontes_referencia?: string[] | null
+          gerado_em?: string | null
+          id?: number
+          ordem: number
+          titulo: string
+          topicos?: string[] | null
+          updated_at?: string | null
+          url_audio?: string | null
+          url_capa?: string | null
+        }
+        Update: {
+          cache_validade?: string | null
+          categoria?: string
+          conteudo_gerado?: string | null
+          created_at?: string | null
+          descricao_curta?: string | null
+          fontes_referencia?: string[] | null
+          gerado_em?: string | null
+          id?: number
+          ordem?: number
+          titulo?: string
+          topicos?: string[] | null
+          updated_at?: string | null
+          url_audio?: string | null
+          url_capa?: string | null
         }
         Relationships: []
       }
@@ -1468,6 +1660,75 @@ export type Database = {
           ultima_visualizacao?: string | null
           versao_conteudo?: number | null
           visualizacoes?: number | null
+        }
+        Relationships: []
+      }
+      COMPLETE_LEI_CACHE: {
+        Row: {
+          area: string
+          artigo: string
+          created_at: string | null
+          id: number
+          lacunas: Json
+          palavras: Json
+          texto_com_lacunas: string
+        }
+        Insert: {
+          area: string
+          artigo: string
+          created_at?: string | null
+          id?: number
+          lacunas: Json
+          palavras: Json
+          texto_com_lacunas: string
+        }
+        Update: {
+          area?: string
+          artigo?: string
+          created_at?: string | null
+          id?: number
+          lacunas?: Json
+          palavras?: Json
+          texto_com_lacunas?: string
+        }
+        Relationships: []
+      }
+      CONFIGURACOES_IA: {
+        Row: {
+          ativo: boolean | null
+          chave_api_nome: string
+          created_at: string | null
+          id: number
+          modelo: string
+          nome_servico: string
+          tipo: string
+          updated_at: string | null
+          uso_descricao: string
+          voz_genero: string | null
+        }
+        Insert: {
+          ativo?: boolean | null
+          chave_api_nome: string
+          created_at?: string | null
+          id?: number
+          modelo: string
+          nome_servico: string
+          tipo: string
+          updated_at?: string | null
+          uso_descricao: string
+          voz_genero?: string | null
+        }
+        Update: {
+          ativo?: boolean | null
+          chave_api_nome?: string
+          created_at?: string | null
+          id?: number
+          modelo?: string
+          nome_servico?: string
+          tipo?: string
+          updated_at?: string | null
+          uso_descricao?: string
+          voz_genero?: string | null
         }
         Relationships: []
       }
@@ -2898,6 +3159,33 @@ export type Database = {
         }
         Relationships: []
       }
+      fila_geracao_aulas: {
+        Row: {
+          codigo_tabela: string
+          created_at: string | null
+          em_processamento: boolean | null
+          id: string
+          ultima_atualizacao: string | null
+          ultimo_artigo_processado: number | null
+        }
+        Insert: {
+          codigo_tabela: string
+          created_at?: string | null
+          em_processamento?: boolean | null
+          id?: string
+          ultima_atualizacao?: string | null
+          ultimo_artigo_processado?: number | null
+        }
+        Update: {
+          codigo_tabela?: string
+          created_at?: string | null
+          em_processamento?: boolean | null
+          id?: string
+          ultima_atualizacao?: string | null
+          ultimo_artigo_processado?: number | null
+        }
+        Relationships: []
+      }
       FLASHCARDS: {
         Row: {
           area: string | null
@@ -2928,6 +3216,123 @@ export type Database = {
           pergunta?: string | null
           resposta?: string | null
           tema?: string | null
+        }
+        Relationships: []
+      }
+      "FLASHCARDS - ARTIGOS LEI": {
+        Row: {
+          area: string | null
+          "audio-pergunta": string | null
+          "audio-resposta": string | null
+          base_legal: string | null
+          exemplo: string | null
+          id: number
+          pergunta: string | null
+          resposta: string | null
+          tema: number | null
+          url_audio_exemplo: string | null
+          url_imagem_exemplo: string | null
+        }
+        Insert: {
+          area?: string | null
+          "audio-pergunta"?: string | null
+          "audio-resposta"?: string | null
+          base_legal?: string | null
+          exemplo?: string | null
+          id?: number
+          pergunta?: string | null
+          resposta?: string | null
+          tema?: number | null
+          url_audio_exemplo?: string | null
+          url_imagem_exemplo?: string | null
+        }
+        Update: {
+          area?: string | null
+          "audio-pergunta"?: string | null
+          "audio-resposta"?: string | null
+          base_legal?: string | null
+          exemplo?: string | null
+          id?: number
+          pergunta?: string | null
+          resposta?: string | null
+          tema?: number | null
+          url_audio_exemplo?: string | null
+          url_imagem_exemplo?: string | null
+        }
+        Relationships: []
+      }
+      flashcards_areas_capas: {
+        Row: {
+          area: string
+          created_at: string | null
+          id: number
+          total_flashcards: number | null
+          updated_at: string | null
+          url_capa: string | null
+        }
+        Insert: {
+          area: string
+          created_at?: string | null
+          id?: number
+          total_flashcards?: number | null
+          updated_at?: string | null
+          url_capa?: string | null
+        }
+        Update: {
+          area?: string
+          created_at?: string | null
+          id?: number
+          total_flashcards?: number | null
+          updated_at?: string | null
+          url_capa?: string | null
+        }
+        Relationships: []
+      }
+      FLASHCARDS_GERADOS: {
+        Row: {
+          area: string
+          base_legal: string | null
+          created_at: string | null
+          exemplo: string | null
+          id: number
+          pergunta: string
+          resposta: string
+          subtema: string
+          tema: string
+          url_audio_exemplo: string | null
+          url_audio_pergunta: string | null
+          url_audio_resposta: string | null
+          url_imagem_exemplo: string | null
+        }
+        Insert: {
+          area: string
+          base_legal?: string | null
+          created_at?: string | null
+          exemplo?: string | null
+          id?: number
+          pergunta: string
+          resposta: string
+          subtema: string
+          tema: string
+          url_audio_exemplo?: string | null
+          url_audio_pergunta?: string | null
+          url_audio_resposta?: string | null
+          url_imagem_exemplo?: string | null
+        }
+        Update: {
+          area?: string
+          base_legal?: string | null
+          created_at?: string | null
+          exemplo?: string | null
+          id?: number
+          pergunta?: string
+          resposta?: string
+          subtema?: string
+          tema?: string
+          url_audio_exemplo?: string | null
+          url_audio_pergunta?: string | null
+          url_audio_resposta?: string | null
+          url_imagem_exemplo?: string | null
         }
         Relationships: []
       }
@@ -5004,6 +5409,39 @@ export type Database = {
         }
         Relationships: []
       }
+      mapas_mentais_artigos: {
+        Row: {
+          codigo_tabela: string
+          conteudo_artigo: string
+          created_at: string | null
+          id: string
+          imagem_url: string | null
+          numero_artigo: string
+          prompt_usado: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          codigo_tabela: string
+          conteudo_artigo: string
+          created_at?: string | null
+          id?: string
+          imagem_url?: string | null
+          numero_artigo: string
+          prompt_usado?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          codigo_tabela?: string
+          conteudo_artigo?: string
+          created_at?: string | null
+          id?: string
+          imagem_url?: string | null
+          numero_artigo?: string
+          prompt_usado?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       meu_brasil_casos: {
         Row: {
           ano: number | null
@@ -5340,6 +5778,78 @@ export type Database = {
         }
         Relationships: []
       }
+      "PLANO DE ESTUDOS- MATERIAS": {
+        Row: {
+          Administrativo: string | null
+          Ambiental: string | null
+          Constitucional: string | null
+          Consumidor: string | null
+          "Direito Civil": string | null
+          "Direito Eleitoral": string | null
+          "Direito Financeiro": string | null
+          "Direito Previdenciário": string | null
+          "Direitos Humanos": string | null
+          ECA: string | null
+          Empresarial: string | null
+          Ética: string | null
+          Filosofia: string | null
+          id: number
+          Internacional: string | null
+          Penal: string | null
+          "Processo Civil": string | null
+          "Processo do Trabalho": string | null
+          "Processo Penal": string | null
+          Trabalho: string | null
+          Tributário: string | null
+        }
+        Insert: {
+          Administrativo?: string | null
+          Ambiental?: string | null
+          Constitucional?: string | null
+          Consumidor?: string | null
+          "Direito Civil"?: string | null
+          "Direito Eleitoral"?: string | null
+          "Direito Financeiro"?: string | null
+          "Direito Previdenciário"?: string | null
+          "Direitos Humanos"?: string | null
+          ECA?: string | null
+          Empresarial?: string | null
+          Ética?: string | null
+          Filosofia?: string | null
+          id?: number
+          Internacional?: string | null
+          Penal?: string | null
+          "Processo Civil"?: string | null
+          "Processo do Trabalho"?: string | null
+          "Processo Penal"?: string | null
+          Trabalho?: string | null
+          Tributário?: string | null
+        }
+        Update: {
+          Administrativo?: string | null
+          Ambiental?: string | null
+          Constitucional?: string | null
+          Consumidor?: string | null
+          "Direito Civil"?: string | null
+          "Direito Eleitoral"?: string | null
+          "Direito Financeiro"?: string | null
+          "Direito Previdenciário"?: string | null
+          "Direitos Humanos"?: string | null
+          ECA?: string | null
+          Empresarial?: string | null
+          Ética?: string | null
+          Filosofia?: string | null
+          id?: number
+          Internacional?: string | null
+          Penal?: string | null
+          "Processo Civil"?: string | null
+          "Processo do Trabalho"?: string | null
+          "Processo Penal"?: string | null
+          Trabalho?: string | null
+          Tributário?: string | null
+        }
+        Relationships: []
+      }
       premium_analytics: {
         Row: {
           action: string
@@ -5397,6 +5907,69 @@ export type Database = {
         }
         Relationships: []
       }
+      QUESTOES_ARTIGOS_LEI: {
+        Row: {
+          alternativa_a: string
+          alternativa_b: string
+          alternativa_c: string
+          alternativa_d: string
+          area: string
+          artigo: string
+          comentario: string | null
+          created_at: string | null
+          dificuldade: string | null
+          enunciado: string
+          exemplo_pratico: string | null
+          id: number
+          resposta_correta: string
+          updated_at: string | null
+          url_audio_comentario: string | null
+          url_audio_enunciado: string | null
+          url_audio_exemplo: string | null
+          url_imagem_exemplo: string | null
+        }
+        Insert: {
+          alternativa_a: string
+          alternativa_b: string
+          alternativa_c: string
+          alternativa_d: string
+          area: string
+          artigo: string
+          comentario?: string | null
+          created_at?: string | null
+          dificuldade?: string | null
+          enunciado: string
+          exemplo_pratico?: string | null
+          id?: number
+          resposta_correta: string
+          updated_at?: string | null
+          url_audio_comentario?: string | null
+          url_audio_enunciado?: string | null
+          url_audio_exemplo?: string | null
+          url_imagem_exemplo?: string | null
+        }
+        Update: {
+          alternativa_a?: string
+          alternativa_b?: string
+          alternativa_c?: string
+          alternativa_d?: string
+          area?: string
+          artigo?: string
+          comentario?: string | null
+          created_at?: string | null
+          dificuldade?: string | null
+          enunciado?: string
+          exemplo_pratico?: string | null
+          id?: number
+          resposta_correta?: string
+          updated_at?: string | null
+          url_audio_comentario?: string | null
+          url_audio_enunciado?: string | null
+          url_audio_exemplo?: string | null
+          url_imagem_exemplo?: string | null
+        }
+        Relationships: []
+      }
       QUESTOES_GERADAS: {
         Row: {
           acertos: number | null
@@ -5410,6 +5983,7 @@ export type Database = {
           created_at: string | null
           enunciado: string
           erros: number | null
+          exemplo_pratico: string | null
           gerada_em: string | null
           id: number
           modelo_ia: string | null
@@ -5419,6 +5993,10 @@ export type Database = {
           taxa_acerto: number | null
           tema: string
           updated_at: string | null
+          url_audio: string | null
+          url_audio_comentario: string | null
+          url_audio_exemplo: string | null
+          url_imagem_exemplo: string | null
           versao_geracao: number | null
           vezes_respondida: number | null
         }
@@ -5434,6 +6012,7 @@ export type Database = {
           created_at?: string | null
           enunciado: string
           erros?: number | null
+          exemplo_pratico?: string | null
           gerada_em?: string | null
           id?: number
           modelo_ia?: string | null
@@ -5443,6 +6022,10 @@ export type Database = {
           taxa_acerto?: number | null
           tema: string
           updated_at?: string | null
+          url_audio?: string | null
+          url_audio_comentario?: string | null
+          url_audio_exemplo?: string | null
+          url_imagem_exemplo?: string | null
           versao_geracao?: number | null
           vezes_respondida?: number | null
         }
@@ -5458,6 +6041,7 @@ export type Database = {
           created_at?: string | null
           enunciado?: string
           erros?: number | null
+          exemplo_pratico?: string | null
           gerada_em?: string | null
           id?: number
           modelo_ia?: string | null
@@ -5467,59 +6051,12 @@ export type Database = {
           taxa_acerto?: number | null
           tema?: string
           updated_at?: string | null
+          url_audio?: string | null
+          url_audio_comentario?: string | null
+          url_audio_exemplo?: string | null
+          url_imagem_exemplo?: string | null
           versao_geracao?: number | null
           vezes_respondida?: number | null
-        }
-        Relationships: []
-      }
-      QUESTOES_LOTE: {
-        Row: {
-          areas_selecionadas: string[]
-          concluido_em: string | null
-          created_at: string | null
-          custo_estimado_usd: number | null
-          id: number
-          iniciado_em: string | null
-          log_erros: Json | null
-          progresso_percentual: number | null
-          questoes_por_tema: number | null
-          status: string | null
-          tempo_total_minutos: number | null
-          tokens_gastos: number | null
-          total_questoes_geradas: number | null
-          total_resumos_processados: number | null
-        }
-        Insert: {
-          areas_selecionadas: string[]
-          concluido_em?: string | null
-          created_at?: string | null
-          custo_estimado_usd?: number | null
-          id?: number
-          iniciado_em?: string | null
-          log_erros?: Json | null
-          progresso_percentual?: number | null
-          questoes_por_tema?: number | null
-          status?: string | null
-          tempo_total_minutos?: number | null
-          tokens_gastos?: number | null
-          total_questoes_geradas?: number | null
-          total_resumos_processados?: number | null
-        }
-        Update: {
-          areas_selecionadas?: string[]
-          concluido_em?: string | null
-          created_at?: string | null
-          custo_estimado_usd?: number | null
-          id?: number
-          iniciado_em?: string | null
-          log_erros?: Json | null
-          progresso_percentual?: number | null
-          questoes_por_tema?: number | null
-          status?: string | null
-          tempo_total_minutos?: number | null
-          tokens_gastos?: number | null
-          total_questoes_geradas?: number | null
-          total_resumos_processados?: number | null
         }
         Relationships: []
       }
@@ -5629,7 +6166,18 @@ export type Database = {
           "ordem Tema": string | null
           subtema: string | null
           tema: string | null
+          timepoints_exemplos: Json | null
+          timepoints_resumo: Json | null
+          timepoints_termos: Json | null
           ultima_atualizacao: string | null
+          url_audio_exemplos: string | null
+          url_audio_resumo: string | null
+          url_audio_termos: string | null
+          url_imagem_exemplo_1: string | null
+          url_imagem_exemplo_2: string | null
+          url_imagem_exemplo_3: string | null
+          url_imagem_resumo: string | null
+          url_pdf: string | null
         }
         Insert: {
           area?: string | null
@@ -5640,7 +6188,18 @@ export type Database = {
           "ordem Tema"?: string | null
           subtema?: string | null
           tema?: string | null
+          timepoints_exemplos?: Json | null
+          timepoints_resumo?: Json | null
+          timepoints_termos?: Json | null
           ultima_atualizacao?: string | null
+          url_audio_exemplos?: string | null
+          url_audio_resumo?: string | null
+          url_audio_termos?: string | null
+          url_imagem_exemplo_1?: string | null
+          url_imagem_exemplo_2?: string | null
+          url_imagem_exemplo_3?: string | null
+          url_imagem_resumo?: string | null
+          url_pdf?: string | null
         }
         Update: {
           area?: string | null
@@ -5651,7 +6210,96 @@ export type Database = {
           "ordem Tema"?: string | null
           subtema?: string | null
           tema?: string | null
+          timepoints_exemplos?: Json | null
+          timepoints_resumo?: Json | null
+          timepoints_termos?: Json | null
           ultima_atualizacao?: string | null
+          url_audio_exemplos?: string | null
+          url_audio_resumo?: string | null
+          url_audio_termos?: string | null
+          url_imagem_exemplo_1?: string | null
+          url_imagem_exemplo_2?: string | null
+          url_imagem_exemplo_3?: string | null
+          url_imagem_resumo?: string | null
+          url_pdf?: string | null
+        }
+        Relationships: []
+      }
+      resumos_acessos: {
+        Row: {
+          created_at: string | null
+          id: number
+          resumo_id: number
+          session_id: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: number
+          resumo_id: number
+          session_id?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: number
+          resumo_id?: number
+          session_id?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      RESUMOS_ARTIGOS_LEI: {
+        Row: {
+          area: string
+          conteudo_original: string | null
+          created_at: string | null
+          exemplos: string | null
+          id: number
+          resumo_markdown: string | null
+          tema: string
+          termos: string | null
+          url_audio_exemplos: string | null
+          url_audio_resumo: string | null
+          url_audio_termos: string | null
+          url_imagem_exemplo_1: string | null
+          url_imagem_exemplo_2: string | null
+          url_imagem_exemplo_3: string | null
+          url_imagem_resumo: string | null
+        }
+        Insert: {
+          area: string
+          conteudo_original?: string | null
+          created_at?: string | null
+          exemplos?: string | null
+          id?: number
+          resumo_markdown?: string | null
+          tema: string
+          termos?: string | null
+          url_audio_exemplos?: string | null
+          url_audio_resumo?: string | null
+          url_audio_termos?: string | null
+          url_imagem_exemplo_1?: string | null
+          url_imagem_exemplo_2?: string | null
+          url_imagem_exemplo_3?: string | null
+          url_imagem_resumo?: string | null
+        }
+        Update: {
+          area?: string
+          conteudo_original?: string | null
+          created_at?: string | null
+          exemplos?: string | null
+          id?: number
+          resumo_markdown?: string | null
+          tema?: string
+          termos?: string | null
+          url_audio_exemplos?: string | null
+          url_audio_resumo?: string | null
+          url_audio_termos?: string | null
+          url_imagem_exemplo_1?: string | null
+          url_imagem_exemplo_2?: string | null
+          url_imagem_exemplo_3?: string | null
+          url_imagem_resumo?: string | null
         }
         Relationships: []
       }
@@ -6089,12 +6737,18 @@ export type Database = {
           Ano: number | null
           area: string | null
           Banca: string | null
+          comentario: string | null
           Enunciado: string | null
           Exame: string | null
+          exemplo_pratico: string | null
           id: number
           "Numero da questao": number | null
           "Questao Narrada": string | null
           resposta: string | null
+          url_audio_comentario: string | null
+          url_audio_exemplo: string | null
+          url_imagem_comentario: string | null
+          url_imagem_exemplo: string | null
         }
         Insert: {
           "Alternativa A"?: string | null
@@ -6105,12 +6759,18 @@ export type Database = {
           Ano?: number | null
           area?: string | null
           Banca?: string | null
+          comentario?: string | null
           Enunciado?: string | null
           Exame?: string | null
+          exemplo_pratico?: string | null
           id: number
           "Numero da questao"?: number | null
           "Questao Narrada"?: string | null
           resposta?: string | null
+          url_audio_comentario?: string | null
+          url_audio_exemplo?: string | null
+          url_imagem_comentario?: string | null
+          url_imagem_exemplo?: string | null
         }
         Update: {
           "Alternativa A"?: string | null
@@ -6121,12 +6781,18 @@ export type Database = {
           Ano?: number | null
           area?: string | null
           Banca?: string | null
+          comentario?: string | null
           Enunciado?: string | null
           Exame?: string | null
+          exemplo_pratico?: string | null
           id?: number
           "Numero da questao"?: number | null
           "Questao Narrada"?: string | null
           resposta?: string | null
+          url_audio_comentario?: string | null
+          url_audio_exemplo?: string | null
+          url_imagem_comentario?: string | null
+          url_imagem_exemplo?: string | null
         }
         Relationships: []
       }
@@ -6482,17 +7148,17 @@ export type Database = {
         Row: {
           Artigo: string | null
           id: number
-          "Número do Artigo": string | null
+          Narração: string | null
         }
         Insert: {
           Artigo?: string | null
           id?: number
-          "Número do Artigo"?: string | null
+          Narração?: string | null
         }
         Update: {
           Artigo?: string | null
           id?: number
-          "Número do Artigo"?: string | null
+          Narração?: string | null
         }
         Relationships: []
       }
@@ -6720,7 +7386,18 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      vw_status_cache_proposicoes: {
+        Row: {
+          com_foto: number | null
+          data_mais_antiga: string | null
+          data_mais_recente: string | null
+          percentual_foto: number | null
+          tipo: string | null
+          total: number | null
+          ultima_atualizacao: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       get_flashcard_areas: {
@@ -6730,6 +7407,13 @@ export type Database = {
           count: number
         }[]
       }
+      get_flashcard_artigos_count: {
+        Args: never
+        Returns: {
+          area: string
+          total: number
+        }[]
+      }
       get_flashcard_temas: {
         Args: { p_area: string }
         Returns: {
@@ -6737,10 +7421,19 @@ export type Database = {
           tema: string
         }[]
       }
+      get_questoes_areas_stats: {
+        Args: never
+        Returns: {
+          area: string
+          total_questoes: number
+          total_temas: number
+        }[]
+      }
       incrementar_stats_questao: {
         Args: { p_correta: boolean; p_questao_id: number }
         Returns: undefined
       }
+      limpar_cache_proposicoes_antigo: { Args: never; Returns: undefined }
       reset_daily_limits: { Args: never; Returns: undefined }
       verificar_status_premium: {
         Args: { p_user_id: string }
